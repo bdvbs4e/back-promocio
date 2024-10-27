@@ -1,0 +1,23 @@
+[
+  {
+    "username": "user1",
+    "password": "1666",
+    "role": "user",
+    "pregunta1": "¿En que ciudad Naciste?",
+    "respuesta1": "Palmira",
+    "pregunta2": "El nombre de tu primer amor platónico",
+    "respuesta2": "Natalia",
+    "pregunta3": "El nombre de tu primera mascota",
+    "respuestaSeguridad3": "Lupita"
+  },
+  {
+    "username": "user2",
+    "password": "userpass2",
+    "role": "user"
+  },
+  {
+    "username": "a",
+    "password": "a",
+    "role": "user"
+  }
+]
