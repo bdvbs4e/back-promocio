@@ -7,7 +7,7 @@ const validateCredentials = async (req, res) => {
     const { code, userId } = req.body; // Se recibe el código y el ID del usuario desde el frontend
     try {
         // Buscar si el código existe en la base de datos
-        const existingCode = await pool.db('Promoción').collection('Codigo').findOne({ code });
+        const existingCode = await pool.db('promociones').collection('codigo').findOne({ code });
 
         if (existingCode) {
             // Verificar si el código ya ha sido usado por otro usuario
@@ -20,7 +20,7 @@ const validateCredentials = async (req, res) => {
             const userObjectId = new ObjectId(userId);
 
             // Actualizar el código en la base de datos: cambiar el estado a ocupado y asignar el userId y la fecha
-            await pool.db('Promoción').collection('Codigo').updateOne(
+            await pool.db('promociones').collection('codigo').updateOne(
                 { code }, // Filtro para encontrar el código
                 { 
                     $set: { 
@@ -57,7 +57,7 @@ const getUserCodes = async (req, res) => {
     
     try {
         const userObjectId = new ObjectId(userId);  // Convertir el userId a ObjectId
-        const codes = await pool.db('Promoción').collection('Codigo').find({ status: userObjectId }).toArray();
+        const codes = await pool.db('promociones').collection('codigo').find({ status: userObjectId }).toArray();
         
         res.status(200).json({ status: "Success", codes });
     } catch (error) {
@@ -69,7 +69,7 @@ const getUserCodes = async (req, res) => {
 const getWinners = async (req, res) => {
     try {
         // Busca todos los códigos con status que no sea "libre" (o sea, los códigos que han sido reclamados)
-        const winners = await pool.db('Promoción').collection('Codigo').aggregate([
+        const winners = await pool.db('promociones').collection('codigo').aggregate([
             {
                 $match: { status: { $ne: 'libre' } }  // Buscar códigos ocupados
             },
