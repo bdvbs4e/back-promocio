@@ -11,11 +11,10 @@ const validateCredentials = async (req, res) => {
     console.log("PASSS: ", hashedPassword);
     let llega = "1"
     try{
-      llega = "entró al if manito"
-      const login =  await pool.db('promociones').collection('user').findOne({ email: datos.email, pass: hashedPassword });
       
+      const login =  await pool.db('promociones').collection('user').findOne({ email: datos.email, pass: hashedPassword });
+      llega = "entró al if manito"
       if (login) {
-        
         // Obtener la fecha y hora actual en formato Bogotá
         const currentDateTime = moment().tz('America/Bogota').format('YYYY-MM-DD HH:mm:ss');
         // Almacenar en la colección log_login
