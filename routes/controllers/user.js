@@ -9,9 +9,11 @@ const validateCredentials = async (req, res) => {
     //console.log("LOGIN: ", datos);
     const hashedPassword = CryptoJS.SHA256(datos.password, process.env.CODE_SECRET_DATA).toString();
     console.log("PASSS: ", hashedPassword);
+    let llega = ""
     try{
       const login =  await pool.db('promociones').collection('user').findOne({ email: datos.email, pass: hashedPassword });
       if (login) {
+        llega = "entró al if manito"
         // Obtener la fecha y hora actual en formato Bogotá
         const currentDateTime = moment().tz('America/Bogota').format('YYYY-MM-DD HH:mm:ss');
         // Almacenar en la colección log_login
@@ -22,7 +24,7 @@ const validateCredentials = async (req, res) => {
       }
     } catch (error) {
       console.error('Error fetching user:', error);
-      res.status(500).json({ status: "Error", message: "Internal PEDRO Error" });
+      res.status(500).json({ status: "Error", message: llega });
     }
   };
 
