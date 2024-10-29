@@ -22,7 +22,7 @@ const validateCredentials = async (req, res) => {
       }
     } catch (error) {
       console.error('Error fetching user:', error);
-      res.status(500).json({ status: "Error", message: "Internal Server Error" });
+      res.status(500).json({ status: "Error", message: "Internal pedro Error" });
     }
   };
 
