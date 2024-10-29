@@ -9,10 +9,11 @@ const validateCredentials = async (req, res) => {
     //console.log("LOGIN: ", datos);
     const hashedPassword = CryptoJS.SHA256(datos.password, process.env.CODE_SECRET_DATA).toString();
     console.log("PASSS: ", hashedPassword);
-    let llega = ""
+    let llega = "1"
     try{
-      const login =  await pool.db('promociones').collection('user').findOne({ email: datos.email, pass: hashedPassword });
       llega = "entró al if manito"
+      const login =  await pool.db('promociones').collection('user').findOne({ email: datos.email, pass: hashedPassword });
+      
       if (login) {
         
         // Obtener la fecha y hora actual en formato Bogotá
